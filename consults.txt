@@ -1,0 +1,56 @@
+show dbs
+use ecommerce
+
+1)
+    db.messages.insertMany([
+        {"email":"email1@gmail.com","date":"20/8/2022, 2:54:57","message":"Hola"},
+        {"email":"email2@gmail.com","date":"20/8/2022, 2:55:20","message":"Buenas!"},
+        {"email":"email3@gmail.com","date":"20/8/2022, 2:56:05","message":"Como andan?"},
+        {"email":"email2@gmail.com","date":"20/8/2022, 2:56:13","message":"Bien!!! vos?"},
+        {"email":"email3@gmail.com","date":"20/8/2022, 2:56:21","message":"Todo bien!!!"},
+        {"email":"email1@gmail.com","date":"20/8/2022, 2:56:33","message":"Yo por suerte de 10 :)"},
+        {"email":"email4@gmail.com","date":"20/8/2022, 2:57:20","message":"Saludos desde Argentina!!!!"},
+        {"email":"email4@gmail.com","date":"20/8/2022, 2:57:42","message":"Interesante la lista de precios"},
+        {"email":"email1@gmail.com","date":"20/8/2022, 2:58:16","message":"Sii, gran variedad de productos"},
+        {"email":"email2@gmail.com","date":"20/8/2022, 2:58:38","message":"Super recomendable!!!"}
+    ])
+
+    db.products.insertMany([
+        {"title":"Escuadra","price":700,"thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png"},
+        {"title":"Calculadora","price":2500,"thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png"},
+        {"title":"Globo Terráqueo","price":4500,"thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png"},
+        {"title":"Regla de 30","price":500,"thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png"},
+        {"title":"Transportador","price":400,"thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png"},
+        {"title":"Calculadora Cientifica","price":3500,"thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png"},
+        {"title":"Calculadora Cientifica Casio","price":5000,"thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png"},
+        {"title":"Mapa Pizarron Planisferio","price":4500,"thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png"},
+        {"title":"Mapa Planisferio","price":100,"thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png"},
+        {"title":"Mapa planisferio Fisico","price":130,"thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png"}
+    ])
+
+3)
+	db.messages.find()
+	db.products.find()
+4)
+	db.messages.estimatedDocumentCount()
+	db.products.estimatedDocumentCount()
+5)
+    a)	
+        db.products.insertOne({"title":"Tablero","price":1900,"thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png"})
+    b)	
+        i)	
+            db.products.find({"price":{$lt: 1000}})
+        ii)	
+            db.products.find({$and:[{"price":{$gt:1000}},{"price":{$lt:3000}}]})
+        iii)	
+            db.products.find({"price":{$gt:3000}})
+        iv)	
+            db.products.find().sort({"price":1}).skip(2).limit(1)
+
+    c)	
+        db.products.updateMany({_id:{$exists:true}},{$inc:{"stock":100}})
+    d)	
+        db.products.updateMany({"price":{$gt:4000}},{$set:{"stock":0}})
+    e)	
+        db.products.deleteMany({"price":{$lt:1000}})
+
